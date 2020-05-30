@@ -1,0 +1,8 @@
+${AnsiColor.BLUE}          _____ ______   __
+${AnsiColor.BLUE}         / ____|  _ \ \ / /
+${AnsiColor.BLUE}        | (___ | |_) \ V /
+${AnsiColor.BLUE}         \___ \|  _ < > <
+${AnsiColor.BLUE}         ____) | |_) / . \
+${AnsiColor.BLUE}        |_____/|____/_/ \_\
+
+${AnsiColor.BLUE}:: SBX :: ${spring.application.name}:${AnsiColor.RED}${sbx.env}${AnsiColor.BLUE} :: Running SpringBoot ${spring-boot.version} :: ${AnsiColor.BRIGHT_BLACK}
