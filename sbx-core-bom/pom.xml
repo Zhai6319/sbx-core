@@ -232,11 +232,11 @@
     <distributionManagement>
         <repository>
             <id>rdc-releases</id>
-            <url>https://repo.rdc.aliyun.com/repository/126591-release-GFdybM/</url>
+            <url>https://packages.aliyun.com/maven/repository/2005528-release-GzbpjG/</url>
         </repository>
         <snapshotRepository>
             <id>rdc-snapshots</id>
-            <url>https://repo.rdc.aliyun.com/repository/126591-snapshot-dAY5vd/</url>
+            <url>https://packages.aliyun.com/maven/repository/2005528-snapshot-qgmTh6/</url>
         </snapshotRepository>
     </distributionManagement>
 
