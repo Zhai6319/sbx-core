@@ -3,7 +3,7 @@ package com.sbx.core.tool.util;
 /**
  * DatatypeConnverterUtil
  *
- * @author Chill
+ * @author Z.jc
  */
 public class DatatypeConverterUtil {
 

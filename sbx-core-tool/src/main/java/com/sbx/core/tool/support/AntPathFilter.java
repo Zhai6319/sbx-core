@@ -10,7 +10,7 @@ import java.io.Serializable;
 /**
  * 文件过滤
  *
- * @author Chill
+ * @author Z.jc
  */
 public class AntPathFilter implements FileFilter, Serializable {
 	private static final long serialVersionUID = 812598009067554612L;

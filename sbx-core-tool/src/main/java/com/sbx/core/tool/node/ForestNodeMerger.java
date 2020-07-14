@@ -5,7 +5,7 @@ import java.util.List;
 /**
  * 森林节点归并类
  *
- * @author smallchill
+ * @author Z.jc
  */
 public class ForestNodeMerger {
 
