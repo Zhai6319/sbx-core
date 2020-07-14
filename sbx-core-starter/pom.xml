@@ -4,7 +4,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
         <artifactId>sbx-core</artifactId>
-        <groupId>org.sbx</groupId>
+        <groupId>com.sbx</groupId>
         <version>1.0.0</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
@@ -13,43 +13,43 @@
 
     <dependencies>
         <dependency>
-            <groupId>org.sbx</groupId>
+            <groupId>com.sbx</groupId>
             <artifactId>sbx-core-model</artifactId>
         </dependency>
         <dependency>
-            <groupId>org.sbx</groupId>
+            <groupId>com.sbx</groupId>
             <artifactId>sbx-core-db</artifactId>
         </dependency>
         <dependency>
-            <groupId>org.sbx</groupId>
+            <groupId>com.sbx</groupId>
             <artifactId>sbx-core-launch</artifactId>
         </dependency>
         <dependency>
-            <groupId>org.sbx</groupId>
+            <groupId>com.sbx</groupId>
             <artifactId>sbx-core-tool</artifactId>
         </dependency>
         <dependency>
-            <groupId>org.sbx</groupId>
+            <groupId>com.sbx</groupId>
             <artifactId>sbx-core-mybatis</artifactId>
         </dependency>
         <dependency>
-            <groupId>org.sbx</groupId>
+            <groupId>com.sbx</groupId>
             <artifactId>sbx-core-auth</artifactId>
         </dependency>
         <dependency>
-            <groupId>org.sbx</groupId>
+            <groupId>com.sbx</groupId>
             <artifactId>sbx-core-web</artifactId>
         </dependency>
         <dependency>
-            <groupId>org.sbx</groupId>
+            <groupId>com.sbx</groupId>
             <artifactId>sbx-core-cloud</artifactId>
         </dependency>
         <dependency>
-            <groupId>org.sbx</groupId>
+            <groupId>com.sbx</groupId>
             <artifactId>sbx-core-log</artifactId>
         </dependency>
         <dependency>
-            <groupId>org.sbx</groupId>
+            <groupId>com.sbx</groupId>
             <artifactId>sbx-core-secure</artifactId>
         </dependency>
 

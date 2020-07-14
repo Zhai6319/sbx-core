@@ -1,2 +1,2 @@
-org.sbx.core.auto.service.AutoServiceProcessor
-org.sbx.core.auto.factories.AutoFactoriesProcessor
+com.sbx.core.auto.service.AutoServiceProcessor
+com.sbx.core.auto.factories.AutoFactoriesProcessor

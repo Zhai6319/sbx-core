@@ -1,4 +1,4 @@
 # Auto Configure
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-org.sbx.core.launch.StartEventListener,\
-org.sbx.core.launch.autoconfigure.AutoPropertyConfiguration
+com.sbx.core.launch.StartEventListener,\
+com.sbx.core.launch.autoconfigure.AutoPropertyConfiguration

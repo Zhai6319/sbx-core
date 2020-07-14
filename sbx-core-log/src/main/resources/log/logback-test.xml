@@ -171,7 +171,7 @@
 
     <!--开发环境:打印控制台-->
     <springProfile name="dev">
-        <logger name="org.sbx" level="debug"/>
+        <logger name="com.sbx" level="debug"/>
     </springProfile>
 
     <root level="debug">

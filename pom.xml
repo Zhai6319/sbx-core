@@ -4,7 +4,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>org.sbx</groupId>
+    <groupId>com.sbx</groupId>
     <artifactId>sbx-core</artifactId>
     <packaging>pom</packaging>
     <version>1.0.0</version>
@@ -47,7 +47,7 @@
     <dependencyManagement>
         <dependencies>
             <dependency>
-                <groupId>org.sbx</groupId>
+                <groupId>com.sbx</groupId>
                 <artifactId>sbx-core-bom</artifactId>
                 <version>${project.version}</version>
                 <type>pom</type>
