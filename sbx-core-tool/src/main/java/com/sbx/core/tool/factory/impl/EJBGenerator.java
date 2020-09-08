@@ -1,5 +1,6 @@
 package com.sbx.core.tool.factory.impl;
 
+import com.sbx.core.model.base.result.PageResult;
 import com.sbx.core.tool.factory.IGenerator;
 import org.dozer.Mapper;
 import org.springframework.context.annotation.Lazy;
@@ -38,7 +39,7 @@ public class EJBGenerator implements IGenerator {
         if (s == null) {
             return null;
         }
-        List<T> list = new ArrayList<T>();
+        List<T> list = new ArrayList<>();
         for (S vs : s) {
             list.add(this.dozerMapper.map(vs, clz));
         }
@@ -50,11 +51,26 @@ public class EJBGenerator implements IGenerator {
         if (s == null) {
             return null;
         }
-        Set<T> set = new HashSet<T>();
+        Set<T> set = new HashSet<>();
         for (S vs : s) {
             set.add(this.dozerMapper.map(vs, clz));
         }
         return set;
+    }
+
+    @Override
+    public <T, S> PageResult<T> convert(PageResult<S> s, Class<T> clz) {
+        if (s == null) {
+            return null;
+        }
+        PageResult<T> page = new PageResult<>();
+        List<T> records = this.convert(s.getRecords(),clz);
+        page.setCurrent(s.getCurrent());
+        page.setSize(s.getSize());
+        page.setTotal(s.getTotal());
+        page.setPages(s.getPages());
+        page.setRecords(records);
+        return page;
     }
 
     @Override

@@ -1,0 +1,10 @@
+dubbo:
+  registry:
+    address: spring-cloud://139.196.42.160:8848
+  scan:
+    base-packages: com.sbx
+  application:
+    qos-enable: false
+  protocol:
+    name: dubbo
+    port: -1

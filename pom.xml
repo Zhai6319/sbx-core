@@ -28,6 +28,7 @@
         <module>sbx-core-sms</module>
         <module>sbx-core-oss</module>
         <module>sbx-core-wx</module>
+        <module>sbx-core-dubbo</module>
     </modules>
 
     <properties>

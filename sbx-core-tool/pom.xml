@@ -32,7 +32,7 @@
         </dependency>
         <dependency>
             <groupId>com.sbx</groupId>
-            <artifactId>sbx-core-swagger</artifactId>
+            <artifactId>sbx-core-model</artifactId>
         </dependency>
         <!--数据转换-->
         <dependency>

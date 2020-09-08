@@ -4,6 +4,8 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
+import java.io.Serializable;
+
 /**
  * <p>说明:</p>
  *
@@ -13,7 +15,9 @@ import lombok.Data;
  */
 @Data
 @ApiModel(value = "Query对象",description = "查询参数")
-public class Query {
+public class Query implements Serializable {
+    private static final long serialVersionUID = 4762387989737502482L;
+
 
     @ApiModelProperty(value = "当前页")
     private Integer current = 1;

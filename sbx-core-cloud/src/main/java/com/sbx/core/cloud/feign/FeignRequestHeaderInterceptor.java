@@ -1,6 +1,6 @@
 package com.sbx.core.cloud.feign;
 
-import com.sbx.core.model.exception.BusinessException;
+import com.sbx.core.model.exception.CustomException;
 import feign.RequestInterceptor;
 import feign.RequestTemplate;
 import lombok.extern.slf4j.Slf4j;
@@ -22,7 +22,7 @@ public class FeignRequestHeaderInterceptor implements RequestInterceptor {
 	@Override
 	public void apply(RequestTemplate requestTemplate) {
 		if (!requestTemplate.url().startsWith(FEIGN_CLIENT_PREFIX)) {
-			throw new BusinessException("feign client interface please extents IBaseClient and request path prefix is '/client-feign'");
+			throw new CustomException("feign client interface please extents IBaseClient and request path prefix is '/client-feign'");
 		}
 		ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
 		HttpServletRequest request = attributes.getRequest();

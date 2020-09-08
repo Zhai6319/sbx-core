@@ -57,6 +57,7 @@ public class Application {
         props.setProperty("sbx.env",profile);
         props.setProperty("spring.application.name", appName);
         props.setProperty("spring.profiles.active",profile);
+        props.setProperty("spring.main.allow-bean-definition-overriding", "true");
         props.setProperty("spring.cloud.nacos.config.file-extension","yaml");
         props.setProperty("spring.cloud.nacos.discovery.register-enable","true");
         props.setProperty("spring.cloud.nacos.discovery.enable","true");

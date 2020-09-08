@@ -4,7 +4,7 @@ import com.alibaba.alicloud.sms.ISmsService;
 import com.aliyuncs.dysmsapi.model.v20170525.SendSmsRequest;
 import com.aliyuncs.dysmsapi.model.v20170525.SendSmsResponse;
 import com.aliyuncs.exceptions.ClientException;
-import com.sbx.core.model.exception.BusinessException;
+import com.sbx.core.model.exception.CustomException;
 import com.sbx.core.model.exception.SecurityException;
 import org.apache.commons.lang3.StringUtils;
 import com.sbx.core.redis.cache.SbxRedisCache;
@@ -55,7 +55,7 @@ public class SmsHelper {
             return sendSmsResponse;
         }
         catch (ClientException e) {
-            throw new BusinessException(e.getMessage());
+            throw new CustomException(e.getMessage());
         }
     }
 

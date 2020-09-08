@@ -3,7 +3,7 @@ package com.sbx.core.log.error;
 import lombok.extern.slf4j.Slf4j;
 import com.sbx.core.model.api.Response;
 import com.sbx.core.model.enums.EResultCode;
-import com.sbx.core.model.exception.BusinessException;
+import com.sbx.core.model.exception.CustomException;
 import com.sbx.core.model.exception.SecurityException;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.Order;
@@ -26,11 +26,11 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 @RestControllerAdvice
 public class RestExceptionHandle {
 
-	@ExceptionHandler(BusinessException.class)
+	@ExceptionHandler(CustomException.class)
 	@ResponseStatus(HttpStatus.BAD_REQUEST)
-	public Response handleError(BusinessException e) {
+	public Response handleError(CustomException e) {
 		log.error("业务异常", e);
-		return Response.fail(e.getIResultCode(), e.getMessage());
+		return Response.fail(e.getErrCode(), e.getMessage());
 	}
 
 	@ExceptionHandler(SecurityException.class)
@@ -53,7 +53,7 @@ public class RestExceptionHandle {
 	public Response handleError(Throwable e) {
 		log.error("服务器异常", e);
 		//发送服务异常事件
-		return Response.fail(EResultCode.INTERNAL_SERVER_ERROR, (StringUtils.isEmpty(e.getMessage()) ? EResultCode.INTERNAL_SERVER_ERROR.getMessage() : e.getMessage()));
+		return Response.fail(EResultCode.INTERNAL_SERVER_ERROR,"服务器异常");
 	}
 
 }
