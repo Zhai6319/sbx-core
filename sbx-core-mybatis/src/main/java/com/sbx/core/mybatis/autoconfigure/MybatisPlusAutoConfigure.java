@@ -3,6 +3,7 @@ package com.sbx.core.mybatis.autoconfigure;
 import com.baomidou.mybatisplus.extension.plugins.OptimisticLockerInterceptor;
 import com.baomidou.mybatisplus.extension.plugins.PaginationInterceptor;
 import com.baomidou.mybatisplus.extension.plugins.pagination.optimize.JsqlParserCountOptimize;
+import com.sbx.core.model.constants.CommonConstant;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -19,7 +20,7 @@ import com.sbx.core.launch.factory.YamlPropertySourceFactory;
  */
 @EnableTransactionManagement
 @Configuration
-@MapperScan("com.sbx.**.mapper.**")
+@MapperScan(CommonConstant.PARENT_PACKAGE+".**.mapper.**")
 @PropertySource(value = "classpath:sbx-mybatis.yaml", factory = YamlPropertySourceFactory.class)
 public class MybatisPlusAutoConfigure {
 

@@ -18,8 +18,8 @@
         </dependency>
 
         <dependency>
-            <groupId>com.sbx</groupId>
-            <artifactId>sbx-core-web</artifactId>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-web</artifactId>
         </dependency>
         <!-- protostuff -->
         <dependency>
