@@ -1,6 +1,6 @@
 package com.sbx.core.sms.helper;
 
-import com.alibaba.alicloud.sms.ISmsService;
+import com.alibaba.cloud.spring.boot.sms.ISmsService;
 import com.aliyuncs.dysmsapi.model.v20170525.SendSmsRequest;
 import com.aliyuncs.dysmsapi.model.v20170525.SendSmsResponse;
 import com.aliyuncs.exceptions.ClientException;

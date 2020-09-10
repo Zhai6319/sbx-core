@@ -8,6 +8,7 @@ import com.sbx.core.mybatis.base.service.IBaseService;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.annotation.Validated;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 
 /**
@@ -23,8 +24,8 @@ public class BaseServiceImpl<M extends IBaseMapper<T>, T extends BaseDO> extends
     @Override
     @Transactional(rollbackFor = Exception.class)
     public boolean save(T entity) {
-        entity.setCreateTime(new Date());
-        entity.setUpdateTime(new Date());
+        entity.setCreateTime(LocalDateTime.now());
+        entity.setUpdateTime(LocalDateTime.now());
         entity.setIsDeleted(false);
         return super.save(entity);
     }
@@ -32,7 +33,7 @@ public class BaseServiceImpl<M extends IBaseMapper<T>, T extends BaseDO> extends
     @Override
     @Transactional(rollbackFor = Exception.class)
     public boolean updateById(T entity) {
-        entity.setUpdateTime(new Date());
+        entity.setUpdateTime(LocalDateTime.now());
         return super.updateById(entity);
     }
 }
