@@ -28,6 +28,7 @@
         <protostuff.version>1.6.0</protostuff.version>
         <weixin-java-miniapp.version>3.7.0</weixin-java-miniapp.version>
         <dozer.version>5.5.1</dozer.version>
+        <alibaba.easyexcel.version>2.2.6</alibaba.easyexcel.version>
     </properties>
 
     <dependencyManagement>
@@ -150,6 +151,12 @@
                 <groupId>com.baomidou</groupId>
                 <artifactId>dynamic-datasource-spring-boot-starter</artifactId>
                 <version>${dynamic.datasource.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>easyexcel</artifactId>
+                <version>${alibaba.easyexcel.version}</version>
             </dependency>
 
             <!-- protostuff -->
