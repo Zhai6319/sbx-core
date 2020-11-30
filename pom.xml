@@ -168,6 +168,14 @@
                 <enabled>true</enabled>
             </releases>
         </repository>
+        <repository>
+            <id>rdc-snapshot</id>
+            <name>Ali Nexus Snapshot</name>
+            <url>https://packages.aliyun.com/maven/repository/2005528-snapshot-qgmTh6/</url>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </repository>
     </repositories>
     <pluginRepositories>
         <pluginRepository>
