@@ -20,10 +20,10 @@ public class Query implements Serializable {
 
 
     @ApiModelProperty(value = "当前页")
-    private Integer current = 1;
+    private Long current = 1L;
 
     @ApiModelProperty(value = "每页数据条数")
-    private Integer size = 20;
+    private Long size = 20L;
 
     @ApiModelProperty(value = "顺序字段")
     private String ascS;
