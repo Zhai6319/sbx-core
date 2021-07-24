@@ -1,0 +1,2 @@
+globalDubboProviderFilter=com.sbx.core.dubbo.filter.GlobalDubboProviderFilter
+globalDubboConsumerFilter=com.sbx.core.dubbo.filter.GlobalDubboConsumerFilter
