@@ -17,5 +17,7 @@ public abstract class AbstractGeneralTreatmentProcessor<T> {
      */
     public abstract void doExecute(List<T> dataList);
 
+    public void doAfterAllAnalysed(){}
+
 
 }

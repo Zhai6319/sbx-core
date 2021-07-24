@@ -1,3 +1,0 @@
-# Auto Configure com.sbx.core.swagger.autoconfigure.AutoSwagger2Configure
-org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-com.sbx.core.swagger.autoconfigure.AutoSwagger2Configure

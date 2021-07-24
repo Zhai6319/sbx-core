@@ -49,19 +49,19 @@ public class Application {
             // 同时存在dev、test、prod环境时
             throw new RuntimeException("同时存在环境变量:[" + StringUtils.arrayToCommaDelimitedString(activeProfiles) + "]");
         }
-        String startJarPath = Application.class.getResource("/").getPath().split("!")[0];
+        String startJarPath = Objects.requireNonNull(Application.class.getResource("/")).getPath().split("!")[0];
         Function<Object[], String> joinFun = StringUtils::arrayToCommaDelimitedString;
         String activePros = joinFun.apply(activeProfileList.toArray());
-        System.out.println(String.format("----启动中，读取到的环境变量:[%s]，jar地址:[%s]----", activePros, startJarPath));
+        System.out.printf("----启动中，读取到的环境变量:[%s]，jar地址:[%s]----%n", activePros, startJarPath);
         Properties props = System.getProperties();
         props.setProperty("sbx.env",profile);
         props.setProperty("spring.application.name", appName);
         props.setProperty("spring.profiles.active",profile);
         props.setProperty("spring.main.allow-bean-definition-overriding", "true");
-        props.setProperty("spring.cloud.nacos.config.file-extension","yaml");
+        props.setProperty("spring.cloud.nacos.config.file-extension","yml");
         props.setProperty("spring.cloud.nacos.discovery.register-enable","true");
         props.setProperty("spring.cloud.nacos.discovery.enable","true");
-        props.setProperty("spring.cloud.nacos.config.shared-dataids", "sbx.yaml,sbx-"+profile+".yaml");
+        props.setProperty("spring.cloud.nacos.config.shared-dataids", "sbx.yml,sbx-"+profile+".yml,"+appName+"-secrecy.yml");
         // 加载自定义组件
         List<LauncherService> launcherList = new ArrayList<>();
         ServiceLoader.load(LauncherService.class).forEach(launcherList::add);

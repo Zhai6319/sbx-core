@@ -1,5 +1,6 @@
 package com.sbx.core.tool.util;
 
+import com.sbx.core.model.exception.CustomException;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.commons.lang3.StringUtils;
 
@@ -21,6 +22,7 @@ public abstract class TxtUtil {
     private static final String HEXES = "0123456789ABCDEF";
     private static final String IP_PARTNER = "(((2[0-4]\\d)|(25[0-5]))|(1\\d{2})|([1-9]\\d)|(\\d))[.](((2[0-4]\\d)|(25[0-5]))|(1\\d{2})|([1-9]\\d)|(\\d))[.](((2[0-4]\\d)|(25[0-5]))|(1\\d{2})|([1-9]\\d)|(\\d))[.](((2[0-4]\\d)|(25[0-5]))|(1\\d{2})|([1-9]\\d)|(\\d))";
     private static final Pattern PATTERN_STR = Pattern.compile("[\\u4e00-\\u9fa5]+");
+    private static final String[] mobileLetter = {"a","b","c","d","e","f","g","h","i","j"};
 
     public TxtUtil(){
     }
@@ -387,6 +389,23 @@ public abstract class TxtUtil {
         return strflag;
     }
 
+    public static String asteriskEncryption(String data,int startIndex,int size){
+        char[] dataChars = data.toCharArray();
+        startIndex = Math.max(startIndex, 1);
+        if (startIndex > dataChars.length) {
+            throw new CustomException("开始索引越界");
+        }
+        StringBuilder encryptionStr = new StringBuilder();
+        for (int i = 0; i < dataChars.length; i++) {
+            if ((i+1) >= startIndex && (i+1) < startIndex + size) {
+                encryptionStr.append("*");
+            } else {
+                encryptionStr.append(dataChars[i]);
+            }
+        }
+        return encryptionStr.toString();
+    }
+
 
     static List<String> online_list = new ArrayList<String>(0);
 
@@ -415,6 +434,17 @@ public abstract class TxtUtil {
         }
         return 1;
     }
+
+    public static String genLetter(String numStr){
+        char[] num = numStr.toCharArray();
+        StringBuffer sb = new StringBuffer();
+        for (int i = 0; i < num.length; i++) {
+            int index = Integer.parseInt(num[i]+"");
+            sb.append(mobileLetter[index]);
+        }
+        return sb.toString();
+    }
+
 
 
 }

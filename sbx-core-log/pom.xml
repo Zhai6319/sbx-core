@@ -3,19 +3,22 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
-        <artifactId>sbx-core</artifactId>
+        <artifactId>sbx-core-parent</artifactId>
         <groupId>com.sbx</groupId>
         <version>1.0.0-SNAPSHOT</version>
+        <relativePath/>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>sbx-core-log</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
 
     <dependencies>
         <dependency>
             <groupId>com.sbx</groupId>
             <artifactId>sbx-core-model</artifactId>
         </dependency>
+
         <dependency>
             <groupId>com.sbx</groupId>
             <artifactId>sbx-core-web</artifactId>
@@ -24,13 +27,19 @@
             <groupId>com.sbx</groupId>
             <artifactId>sbx-core-launch</artifactId>
         </dependency>
+
+        <!-- Logstash -->
         <dependency>
-            <groupId>com.sbx</groupId>
-            <artifactId>sbx-core-auto</artifactId>
+            <groupId>net.logstash.logback</groupId>
+            <artifactId>logstash-logback-encoder</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.codehaus.janino</groupId>
+            <artifactId>janino</artifactId>
         </dependency>
         <dependency>
             <groupId>com.sbx</groupId>
-            <artifactId>sbx-core-secure</artifactId>
+            <artifactId>sbx-core-auto</artifactId>
         </dependency>
     </dependencies>
 

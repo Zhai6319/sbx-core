@@ -1,5 +1,6 @@
 package com.sbx.core.tool.util;
 
+import com.sbx.core.model.util.StringPool;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
@@ -144,6 +145,35 @@ public class WebUtil extends org.springframework.web.util.WebUtils {
 			ip = request.getRemoteAddr();
 		}
 		return StringUtil.isBlank(ip) ? null : StringUtil.splitTrim(ip, StringPool.COMMA)[0];
+	}
+
+	/**
+	 * @param request
+	 * @return java.lang.String 返回类型
+	 * @throws
+	 * @Title: getRemoteIP
+	 * @Description: 获取客户端ip
+	 */
+	public static String getRemoteIP(@Nullable HttpServletRequest request) {
+		if (request == null) {
+			return StringPool.EMPTY;
+		}
+		if (request.getHeader("x-forwarded-for") == null) {
+			return request.getRemoteAddr();
+		}
+		return request.getHeader("x-forwarded-for");
+	}
+
+	/**
+	 * @param request
+	 * @return java.lang.String 返回类型
+	 * @throws
+	 * @Title: getRemoteIP
+	 * @Description: 获取客户端ip
+	 */
+	@Nullable
+	public static String getRemoteIP() {
+		return getRemoteIP(WebUtil.getRequest());
 	}
 
 	/**

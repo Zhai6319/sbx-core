@@ -1,8 +1,14 @@
 package com.sbx.core.redis.autoconfigure;
 
 import com.alibaba.fastjson.support.spring.FastJsonRedisSerializer;
+import com.sbx.core.redis.annotation.EnableRedis;
 import com.sbx.core.redis.cache.SbxRedisCache;
 import com.sbx.core.redis.helper.RedisHelper;
+import org.redisson.Redisson;
+import org.redisson.api.RedissonClient;
+import org.redisson.config.Config;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.autoconfigure.data.redis.RedisProperties;
@@ -25,6 +31,7 @@ import org.springframework.data.redis.serializer.StringRedisSerializer;
  */
 @Configuration
 @ConditionalOnClass(RedisOperations.class)
+@ConditionalOnBean(annotation = {EnableRedis.class})
 @EnableConfigurationProperties(RedisProperties.class)
 public class AutoRedisConfigure {
 
@@ -66,6 +73,14 @@ public class AutoRedisConfigure {
     @Bean
     public SbxRedisCache redisClient(RedisTemplate<String, Object> redisTemplate) {
         return new SbxRedisCache(redisTemplate);
+    }
+
+    @Bean
+    public RedissonClient redissonClient(@Autowired RedisProperties properties) {
+        Config config = new Config();
+        config.useSingleServer().setAddress("redis://" + properties.getHost() + ":" + properties.getPort())
+                .setPassword(properties.getPassword()).setDatabase(properties.getDatabase());
+        return Redisson.create(config);
     }
 
 

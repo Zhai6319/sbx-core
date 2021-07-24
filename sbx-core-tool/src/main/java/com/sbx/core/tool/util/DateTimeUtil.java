@@ -4,6 +4,7 @@ import java.time.*;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.Temporal;
 import java.time.temporal.TemporalAccessor;
+import java.time.temporal.TemporalAdjusters;
 import java.util.Date;
 
 /**
@@ -207,4 +208,98 @@ public class DateTimeUtil {
 	public static Period between(LocalDate startDate, LocalDate endDate) {
 		return Period.between(startDate, endDate);
 	}
+
+	/**
+	 * 获取月的第一天
+	 * @param month	yyyy-MM
+	 * @return
+	 */
+	public static LocalDateTime firstDayForMonth(String month){
+		LocalDateTime dateTime = parseDateTime(month+"-01 00:00:00");
+		return dateTime.with(TemporalAdjusters.firstDayOfMonth())
+				.withHour(0)
+				.withMinute(0)
+				.withSecond(0)
+				.withNano(0);
+	}
+
+	/**
+	 * 获取初始时间
+	 * @return
+	 */
+	public static LocalDateTime getInitTime(){
+		return LocalDateTime.ofEpochSecond(0L,0,ZoneOffset.UTC);
+	}
+	/**
+	 * 获取月的最后一趟
+	 * @param month	yyyy-MM
+	 * @return
+	 */
+	public static LocalDateTime lastDayForMonth(String month){
+		LocalDateTime dateTime = parseDateTime(month+"-01 00:00:00");
+		return dateTime.with(TemporalAdjusters.lastDayOfMonth())
+				.withHour(23)
+				.withMinute(59)
+				.withSecond(59);
+	}
+
+	/**
+	 * 获取昨天时间
+	 * @param timeFormat
+	 * @return
+	 */
+	public static String getYesterdayByFormat(String timeFormat){
+		return LocalDateTime.now().minusDays(1).format(DateTimeFormatter.ofPattern(timeFormat));
+	}
+
+	public static LocalDateTime getYesterdayStart(){
+		return LocalDateTime.now().minusDays(1).withHour(0)
+				.withMinute(0)
+				.withSecond(0)
+				.withNano(0);
+	}
+
+	public static LocalDateTime getYesterdayEnd(){
+		return LocalDateTime.now().minusDays(1).withHour(23)
+				.withMinute(59)
+				.withSecond(59)
+				.withNano(0);
+	}
+
+	public static String getYesterdayDate(){
+		return LocalDateTime.now().minusDays(1).format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+	}
+
+	/**
+	 * 获取今年第一天
+	 * @return
+	 */
+	public static LocalDateTime getFirstDayForYear(){
+		return LocalDateTime.now().with(TemporalAdjusters.firstDayOfYear()).withHour(0).withMinute(0).withSecond(0);
+	}
+
+	/**
+	 * 获取今年最后一天
+	 * @return
+	 */
+	public static LocalDateTime getLastDayForYear(){
+		return LocalDateTime.now().with(TemporalAdjusters.lastDayOfYear()).withHour(23).withMinute(59).withSecond(59);
+	}
+
+	/**
+	 * 获取今年第一天
+	 * @return
+	 */
+	public static String getFirstDayForYearToStr(){
+		return formatDate(getFirstDayForYear());
+	}
+
+	/**
+	 * 获取今年最后一天
+	 * @return
+	 */
+	public static String getLastDayForYearToStr(){
+		return formatDate(getLastDayForYear());
+	}
+
 }

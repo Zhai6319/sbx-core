@@ -1,10 +1,10 @@
 package com.sbx.core.auto.service;
 
-import com.sbx.core.auto.annotation.AutoService;
-import com.sbx.core.auto.common.AbstractSbxProcessor;
+import com.sbx.core.auto.common.AbstractCustomProcessor;
 import com.sbx.core.auto.common.MultiSetMap;
 import com.sbx.core.auto.common.Sets;
 import com.sbx.core.auto.common.TypeHelper;
+import com.sbx.core.auto.annotation.AutoService;
 
 import javax.annotation.processing.Filer;
 import javax.annotation.processing.ProcessingEnvironment;
@@ -30,7 +30,7 @@ import java.util.stream.Collectors;
  * @author Z.jc
  */
 @SupportedOptions("debug")
-public class AutoServiceProcessor extends AbstractSbxProcessor {
+public class AutoServiceProcessor extends AbstractCustomProcessor {
 	/**
 	 * spi 服务集合，key 接口 -> value 实现列表
 	 */

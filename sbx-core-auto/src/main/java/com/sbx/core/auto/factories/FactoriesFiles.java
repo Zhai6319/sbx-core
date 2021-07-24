@@ -1,7 +1,7 @@
 package com.sbx.core.auto.factories;
 
-import lombok.experimental.UtilityClass;
 import com.sbx.core.auto.common.MultiSetMap;
+import lombok.experimental.UtilityClass;
 
 import java.io.BufferedWriter;
 import java.io.IOException;
@@ -28,7 +28,7 @@ class FactoriesFiles {
 	 * @throws IOException 异常信息
 	 */
 	static void writeFactoriesFile(MultiSetMap<String, String> factories,
-								   OutputStream output) throws IOException {
+                                   OutputStream output) throws IOException {
 		BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(output, UTF_8));
 		Set<String> keySet = factories.keySet();
 		for (String key : keySet) {

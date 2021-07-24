@@ -25,12 +25,6 @@ public class Query implements Serializable {
     @ApiModelProperty(value = "每页数据条数")
     private Long size = 20L;
 
-    @ApiModelProperty(value = "顺序字段")
-    private String ascS;
-
-    @ApiModelProperty(value = "倒序字段")
-    private String descS;
-
 
 
 }

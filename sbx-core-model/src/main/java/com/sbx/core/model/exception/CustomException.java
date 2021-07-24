@@ -27,23 +27,26 @@ public class CustomException extends RuntimeException {
     }
 
     public CustomException(IResultCode resultCode, String msg) {
-        String message = String.format(resultCode.getMessage(),msg);
+        super(String.format(resultCode.getMessage(),msg));
+        this.message = String.format(resultCode.getMessage(),msg);
         this.errCode = resultCode.getCode();
     }
 
     public CustomException(IResultCode resultCode, Throwable cause) {
         super(cause);
-        this.errCode = EResultCode.FAILURE.getCode();
+        this.errCode = resultCode.getCode();
     }
 
 
     public CustomException(IResultCode resultCode) {
+        super(resultCode.getMessage());
         this.message = resultCode.getMessage();
         this.errCode = resultCode.getCode();
     }
 
 
     public CustomException(int errCode, String message) {
+        super(message);
         this.message = message;
         this.errCode = errCode;
     }
@@ -64,20 +67,6 @@ public class CustomException extends RuntimeException {
         super(message, cause, enableSuppression, writableStackTrace);
         this.message = cause.getMessage();
         this.errCode = EResultCode.FAILURE.getCode();
-    }
-
-    /**
-     * 提高性能
-     *
-     * @return Throwable
-     */
-    @Override
-    public Throwable fillInStackTrace() {
-        return this;
-    }
-
-    public Throwable doFillInStackTrace() {
-        return super.fillInStackTrace();
     }
 
 }

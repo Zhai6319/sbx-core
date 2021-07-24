@@ -2,7 +2,7 @@ package com.sbx.core.tool.support;
 
 import com.sbx.core.tool.util.Func;
 import com.sbx.core.tool.util.StringUtil;
-import com.sbx.core.tool.util.StringPool;
+import com.sbx.core.model.util.StringPool;
 
 import java.util.ArrayList;
 import java.util.List;

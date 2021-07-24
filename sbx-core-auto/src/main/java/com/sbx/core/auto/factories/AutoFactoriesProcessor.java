@@ -1,10 +1,10 @@
 package com.sbx.core.auto.factories;
 
 
-import com.sbx.core.auto.annotation.AutoService;
-import com.sbx.core.auto.common.AbstractSbxProcessor;
+import com.sbx.core.auto.common.AbstractCustomProcessor;
 import com.sbx.core.auto.common.BootAutoType;
 import com.sbx.core.auto.common.MultiSetMap;
+import com.sbx.core.auto.annotation.AutoService;
 
 import javax.annotation.processing.*;
 import javax.lang.model.element.AnnotationMirror;
@@ -31,7 +31,7 @@ import java.util.stream.Collectors;
 @AutoService(Processor.class)
 @SupportedAnnotationTypes("*")
 @SupportedOptions("debug")
-public class AutoFactoriesProcessor extends AbstractSbxProcessor {
+public class AutoFactoriesProcessor extends AbstractCustomProcessor {
 	/**
 	 * 处理的注解 @FeignClient
 	 */

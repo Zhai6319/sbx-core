@@ -2,16 +2,16 @@ package com.sbx.core.redis.helper;
 
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Repository;
-import org.springframework.util.CollectionUtils;
 
 import javax.annotation.Resource;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
 /**
- * <p>SbxRedisCache class:</p>
+ * <p>RedisHelper class:</p>
  *
  * @author zhaijianchao
  * @version 1.0.0
@@ -34,7 +34,7 @@ public class RedisHelper {
      *
      * @param key  键
      * @param time 时间(秒)
-     * @return
+     * @return  返回结果
      */
     public boolean expire(String key, long time) {
         try {
@@ -78,13 +78,12 @@ public class RedisHelper {
      *
      * @param key 可以传一个值 或多个
      */
-    @SuppressWarnings("unchecked")
     public void del(String... key) {
         if (key != null && key.length > 0) {
             if (key.length == 1) {
                 redisTemplate.delete(key[0]);
             } else {
-                redisTemplate.delete(CollectionUtils.arrayToList(key));
+                redisTemplate.delete(Arrays.asList(key));
             }
         }
     }
@@ -570,8 +569,7 @@ public class RedisHelper {
      */
     public long lRemove(String key, long count, Object value) {
         try {
-            Long remove = redisTemplate.opsForList().remove(key, count, value);
-            return remove;
+            return redisTemplate.opsForList().remove(key, count, value);
         } catch (Exception e) {
             e.printStackTrace();
             return 0;

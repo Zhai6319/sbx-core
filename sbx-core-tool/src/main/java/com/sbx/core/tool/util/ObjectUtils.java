@@ -9,7 +9,6 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.cglib.beans.BeanMap;
 import org.springframework.util.CollectionUtils;
-import sun.reflect.generics.reflectiveObjects.ParameterizedTypeImpl;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.ParameterizedType;
@@ -329,14 +328,7 @@ public class ObjectUtils {
     }
 
 
-    public static Type getParameterizedType(Type t) {
-        if (t instanceof ParameterizedTypeImpl) {
-            Type[] actualTypeArguments = ((ParameterizedTypeImpl) t).getActualTypeArguments();
-            return actualTypeArguments[0];
-        } else {
-            return getParameterizedType(((Class<?>) t).getGenericSuperclass());
-        }
-    }
+
 
     public static Type getGenericInterfaceType(Class<?> clazz, Class<?> defType) {
 

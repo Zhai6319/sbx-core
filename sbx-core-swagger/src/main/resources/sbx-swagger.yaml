@@ -1,4 +1,0 @@
-swagger:
-  title: ${spring.application.name} 接口文档
-  description: swagger接口文档
-  version: 1.0.0

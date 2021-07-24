@@ -23,21 +23,11 @@ public class BaseDTO implements Serializable {
      */
     private Long id;
 
-    /**
-     * 创建人
-     */
-    private Long createUserId;
-
 
     /**
      * 创建时间
      */
     private LocalDateTime createTime;
-
-    /**
-     * 更新人
-     */
-    private Long updateUserId;
 
     /**
      * 更新时间
@@ -48,5 +38,5 @@ public class BaseDTO implements Serializable {
     /**
      * 状态[0:未删除,1:删除]
      */
-    private Boolean isDeleted;
+    private Boolean deleteFlag;
 }

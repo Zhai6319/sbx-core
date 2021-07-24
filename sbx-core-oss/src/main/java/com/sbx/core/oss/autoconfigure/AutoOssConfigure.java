@@ -1,7 +1,7 @@
 package com.sbx.core.oss.autoconfigure;
 
+import com.sbx.core.oss.component.properties.AliOssProperties;
 import com.sbx.core.oss.component.AliOssHelper;
-import com.sbx.core.oss.component.properties.SbxOssProperties;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -14,7 +14,7 @@ import org.springframework.context.annotation.Configuration;
  * @since 2020/5/4
  */
 @Configuration
-@EnableConfigurationProperties(SbxOssProperties.class)
+@EnableConfigurationProperties(AliOssProperties.class)
 public class AutoOssConfigure {
 
     @Bean

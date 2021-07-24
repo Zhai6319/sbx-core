@@ -3,12 +3,14 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
-        <artifactId>sbx-core</artifactId>
+        <artifactId>sbx-core-parent</artifactId>
         <groupId>com.sbx</groupId>
         <version>1.0.0-SNAPSHOT</version>
+        <relativePath/>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
+    <version>1.0.0-SNAPSHOT</version>
     <artifactId>sbx-core-mybatis</artifactId>
 
 
@@ -16,7 +18,6 @@
         <dependency>
             <groupId>com.sbx</groupId>
             <artifactId>sbx-core-tool</artifactId>
-            <version>${project.version}</version>
         </dependency>
         <dependency>
             <groupId>com.baomidou</groupId>
@@ -34,10 +35,6 @@
         <dependency>
             <groupId>com.sbx</groupId>
             <artifactId>sbx-core-model</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.sbx</groupId>
-            <artifactId>sbx-core-secure</artifactId>
         </dependency>
 
     </dependencies>

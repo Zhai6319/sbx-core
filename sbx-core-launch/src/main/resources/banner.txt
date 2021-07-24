@@ -1,8 +1,10 @@
-${AnsiColor.BLUE}          _____ ______   __
-${AnsiColor.BLUE}         / ____|  _ \ \ / /
-${AnsiColor.BLUE}        | (___ | |_) \ V /
-${AnsiColor.BLUE}         \___ \|  _ < > <
-${AnsiColor.BLUE}         ____) | |_) / . \
-${AnsiColor.BLUE}        |_____/|____/_/ \_\
+${AnsiColor.BLUE} ________  ________     ___    ___
+${AnsiColor.BLUE}|\   ____\|\   __  \   |\  \  /  /|
+${AnsiColor.BLUE}\ \  \___|\ \  \|\ /_  \ \  \/  / /
+${AnsiColor.BLUE} \ \_____  \ \   __  \  \ \    / /
+${AnsiColor.BLUE}  \|____|\  \ \  \|\  \  /     \/
+${AnsiColor.BLUE}    ____\_\  \ \_______\/  /\   \
+${AnsiColor.BLUE}   |\_________\|_______/__/ /\ __\
+${AnsiColor.BLUE}   \|_________|        |__|/ \|__|
 
-${AnsiColor.BLUE}:: SBX :: ${spring.application.name}:${AnsiColor.RED}${sbx.env}${AnsiColor.BLUE} :: Running SpringBoot ${spring-boot.version} :: ${AnsiColor.BRIGHT_BLACK}
+${AnsiColor.BLUE}:: sbx :: ${spring.application.name}:${AnsiColor.RED}${sbx.env}${AnsiColor.BLUE} :: Running SpringBoot ${spring-boot.version} :: ${AnsiColor.BRIGHT_BLACK}

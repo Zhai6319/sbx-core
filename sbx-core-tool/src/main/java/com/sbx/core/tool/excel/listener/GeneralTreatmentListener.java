@@ -27,6 +27,7 @@ public class GeneralTreatmentListener<T,S extends AbstractGeneralTreatmentProces
     public GeneralTreatmentListener(S processor){
         this.processor = processor;
         this.batchCount = 10;
+
     }
 
     public GeneralTreatmentListener(S processor,int batchCount){
@@ -48,6 +49,6 @@ public class GeneralTreatmentListener<T,S extends AbstractGeneralTreatmentProces
     public void doAfterAllAnalysed(AnalysisContext analysisContext) {
         processor.doExecute(list);
         list.clear();
-
+        processor.doAfterAllAnalysed();
     }
 }

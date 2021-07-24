@@ -1,6 +1,6 @@
 package com.sbx.core.tool.support.xss;
 
-import com.sbx.core.tool.util.StringPool;
+import com.sbx.core.model.util.StringPool;
 
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;

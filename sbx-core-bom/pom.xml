@@ -2,14 +2,14 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <modelVersion>4.0.0</modelVersion>
-
     <parent>
-        <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.2.5.RELEASE</version>
+        <groupId>org.springframework.boot</groupId>
+        <version>2.5.2</version>
         <relativePath />
     </parent>
+
+    <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.sbx</groupId>
     <artifactId>sbx-core-bom</artifactId>
@@ -18,17 +18,35 @@
     <description>傻笨象统一版本配置</description>
 
     <properties>
-        <swagger.version>2.9.2</swagger.version>
+        <swagger.version>3.0.0</swagger.version>
         <io.swagger.version>1.5.21</io.swagger.version>
-        <alibaba.druid.version>1.1.23</alibaba.druid.version>
-        <mybatis.plus.version>3.4.0</mybatis.plus.version>
+        <alibaba.druid.version>1.1.10</alibaba.druid.version>
+        <mybatis.plus.version>3.4.3.1</mybatis.plus.version>
         <dynamic.datasource.version>2.5.8</dynamic.datasource.version>
-        <p6spy.version>3.8.7</p6spy.version>
+        <p6spy.version>3.9.1</p6spy.version>
         <alibaba.fastjson.version>1.2.68</alibaba.fastjson.version>
         <protostuff.version>1.6.0</protostuff.version>
-        <weixin-java-miniapp.version>3.7.0</weixin-java-miniapp.version>
-        <dozer.version>5.5.1</dozer.version>
+        <weixin-java-miniapp.version>4.0.0</weixin-java-miniapp.version>
         <alibaba.easyexcel.version>2.2.6</alibaba.easyexcel.version>
+        <logstash.version>6.2</logstash.version>
+
+
+        <sbx-core-model.version>1.0.0-SNAPSHOT</sbx-core-model.version>
+        <sbx-core-db.version>1.0.0-SNAPSHOT</sbx-core-db.version>
+        <sbx-core-launch.version>1.0.0-SNAPSHOT</sbx-core-launch.version>
+        <sbx-core-tool.version>1.0.0-SNAPSHOT</sbx-core-tool.version>
+        <sbx-core-mybatis.version>1.0.0-SNAPSHOT</sbx-core-mybatis.version>
+        <sbx-core-auth.version>1.0.0-SNAPSHOT</sbx-core-auth.version>
+        <sbx-core-web.version>1.0.0-SNAPSHOT</sbx-core-web.version>
+        <sbx-core-cloud.version>1.0.0-SNAPSHOT</sbx-core-cloud.version>
+        <sbx-core-log.version>1.0.0-SNAPSHOT</sbx-core-log.version>
+        <sbx-core-secure.version>1.0.0-SNAPSHOT</sbx-core-secure.version>
+        <sbx-core-oss.version>1.0.0-SNAPSHOT</sbx-core-oss.version>
+        <sbx-core-auto.version>1.0.0-SNAPSHOT</sbx-core-auto.version>
+        <sbx-core-redis.version>1.0.0-SNAPSHOT</sbx-core-redis.version>
+        <sbx-core-sms.version>1.0.0-SNAPSHOT</sbx-core-sms.version>
+        <sbx-core-wx.version>1.0.0-SNAPSHOT</sbx-core-wx.version>
+        <sbx-core-dubbo.version>1.0.0-SNAPSHOT</sbx-core-dubbo.version>
     </properties>
 
     <dependencyManagement>
@@ -36,94 +54,73 @@
             <!--sbx Start-->
             <dependency>
                 <groupId>com.sbx</groupId>
+                <artifactId>sbx-core-dubbo</artifactId>
+                <version>${sbx-core-dubbo.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.sbx</groupId>
                 <artifactId>sbx-core-mybatis</artifactId>
-                <version>${project.version}</version>
-                <exclusions>
-                    <exclusion>
-                        <groupId>com.sbx</groupId>
-                        <artifactId>sbx-core-secure</artifactId>
-                    </exclusion>
-                </exclusions>
+                <version>${sbx-core-mybatis.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.sbx</groupId>
                 <artifactId>sbx-core-model</artifactId>
-                <version>${project.version}</version>
+                <version>${sbx-core-model.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.sbx</groupId>
                 <artifactId>sbx-core-db</artifactId>
-                <version>${project.version}</version>
+                <version>${sbx-core-db.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.sbx</groupId>
                 <artifactId>sbx-core-launch</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.sbx</groupId>
-                <artifactId>sbx-core-auth</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.sbx</groupId>
-                <artifactId>sbx-core-secure</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.sbx</groupId>
-                <artifactId>sbx-core-starter</artifactId>
-                <version>${project.version}</version>
+                <version>${sbx-core-launch.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.sbx</groupId>
                 <artifactId>sbx-core-tool</artifactId>
-                <version>${project.version}</version>
+                <version>${sbx-core-tool.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.sbx</groupId>
                 <artifactId>sbx-core-auto</artifactId>
-                <version>${project.version}</version>
+                <version>${sbx-core-auto.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.sbx</groupId>
                 <artifactId>sbx-core-oss</artifactId>
-                <version>${project.version}</version>
+                <version>${sbx-core-oss.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.sbx</groupId>
                 <artifactId>sbx-core-web</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.sbx</groupId>
-                <artifactId>sbx-core-swagger</artifactId>
-                <version>${project.version}</version>
+                <version>${sbx-core-web.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.sbx</groupId>
                 <artifactId>sbx-core-cloud</artifactId>
-                <version>${project.version}</version>
+                <version>${sbx-core-cloud.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.sbx</groupId>
                 <artifactId>sbx-core-log</artifactId>
-                <version>${project.version}</version>
+                <version>${sbx-core-log.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.sbx</groupId>
                 <artifactId>sbx-core-redis</artifactId>
-                <version>${project.version}</version>
+                <version>${sbx-core-redis.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.sbx</groupId>
                 <artifactId>sbx-core-sms</artifactId>
-                <version>${project.version}</version>
+                <version>${sbx-core-sms.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.sbx</groupId>
                 <artifactId>sbx-core-wx</artifactId>
-                <version>${project.version}</version>
+                <version>${sbx-core-wx.version}</version>
             </dependency>
             <!--sbx END-->
 
@@ -183,18 +180,6 @@
                 <version>1.1.0.RELEASE</version>
             </dependency>
 
-            <!--数据转换-->
-            <dependency>
-                <groupId>net.sf.dozer</groupId>
-                <artifactId>dozer-spring</artifactId>
-                <version>${dozer.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>net.sf.dozer</groupId>
-                <artifactId>dozer</artifactId>
-                <version>${dozer.version}</version>
-            </dependency>
-
             <dependency>
                 <groupId>com.github.binarywang</groupId>
                 <artifactId>weixin-java-miniapp</artifactId>
@@ -202,35 +187,18 @@
             </dependency>
 
             <!--swagger接口文档-->
+
             <dependency>
                 <groupId>io.springfox</groupId>
-                <artifactId>springfox-swagger-ui</artifactId>
+                <artifactId>springfox-boot-starter</artifactId>
                 <version>${swagger.version}</version>
-                <exclusions>
-                    <exclusion>
-                        <groupId>io.swagger</groupId>
-                        <artifactId>swagger-annotations</artifactId>
-                    </exclusion>
-                    <exclusion>
-                        <groupId>io.swagger</groupId>
-                        <artifactId>swagger-models</artifactId>
-                    </exclusion>
-                </exclusions>
             </dependency>
+
+            <!-- Logstash -->
             <dependency>
-                <groupId>io.swagger</groupId>
-                <artifactId>swagger-annotations</artifactId>
-                <version>${io.swagger.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>io.swagger</groupId>
-                <artifactId>swagger-models</artifactId>
-                <version>${io.swagger.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>io.springfox</groupId>
-                <artifactId>springfox-swagger2</artifactId>
-                <version>${swagger.version}</version>
+                <groupId>net.logstash.logback</groupId>
+                <artifactId>logstash-logback-encoder</artifactId>
+                <version>${logstash.version}</version>
             </dependency>
 
         </dependencies>
@@ -239,11 +207,11 @@
     <distributionManagement>
         <repository>
             <id>rdc-releases</id>
-            <url>https://packages.aliyun.com/maven/repository/2005528-release-GzbpjG/</url>
+            <url>https://packages.aliyun.com/maven/repository/2005528-release-GzbpjG</url>
         </repository>
         <snapshotRepository>
             <id>rdc-snapshots</id>
-            <url>https://packages.aliyun.com/maven/repository/2005528-snapshot-qgmTh6/</url>
+            <url>https://packages.aliyun.com/maven/repository/2005528-snapshot-qgmTh6</url>
         </snapshotRepository>
     </distributionManagement>
 

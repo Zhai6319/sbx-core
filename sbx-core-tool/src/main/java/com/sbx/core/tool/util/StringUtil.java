@@ -1,5 +1,6 @@
 package com.sbx.core.tool.util;
 
+import com.sbx.core.model.util.StringPool;
 import com.sbx.core.tool.support.StrSpliter;
 import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;

@@ -7,6 +7,8 @@ mybatis-plus:
   global-config:
     banner: false
     db-config:
+      id-type: auto
+      logic-delete-field: deleteFlag
       logic-delete-value: 1
       logic-not-delete-value: 0
       #过滤条件非null及空字符串not_empty

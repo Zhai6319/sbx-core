@@ -375,5 +375,6 @@ public class DigestUtil extends org.springframework.util.DigestUtils {
 	public static String encrypt(String data) {
 		return sha1Hex(md5Hex(data));
 	}
+	
 
 }

@@ -1,12 +1,14 @@
 package com.sbx.core.model.api;
 
+import com.sbx.core.model.context.AppContext;
+import com.sbx.core.model.exception.CustomException;
+import com.sbx.core.model.base.IResultCode;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
-import com.sbx.core.model.base.IResultCode;
 import com.sbx.core.model.enums.EResultCode;
 import org.springframework.lang.Nullable;
 import org.springframework.util.ObjectUtils;
@@ -38,6 +40,8 @@ public class Response<T> implements Serializable {
 	private T data;
 	@ApiModelProperty(value = "返回消息", required = true)
 	private String msg;
+	@ApiModelProperty(value = "跟踪id", required = true)
+	private String traceId;
 
 	private Response(IResultCode resultCode) {
 		this(resultCode, null, resultCode.getMessage());
@@ -60,6 +64,9 @@ public class Response<T> implements Serializable {
 		this.data = data;
 		this.msg = msg;
 		this.success = EResultCode.SUCCESS.getCode() == code;
+		if (AppContext.getContext()!=null) {
+			this.traceId = AppContext.getContext().getTraceId();
+		}
 	}
 
 	/**
@@ -209,6 +216,16 @@ public class Response<T> implements Serializable {
 	 */
 	public static <T> Response<T> status(boolean flag) {
 		return flag ? success(DEFAULT_SUCCESS_MESSAGE) : fail(DEFAULT_FAILURE_MESSAGE);
+	}
+
+	/**
+	 * 成功就获取数据，失败就抛出异常
+	 */
+	public T computeDataOrFailThrow() {
+		if (!isSuccess()) {
+			throw new CustomException(code, msg);
+		}
+		return data;
 	}
 
 }

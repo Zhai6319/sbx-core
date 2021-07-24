@@ -1,7 +1,7 @@
 package com.sbx.core.mybatis.base.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.sbx.core.mybatis.base.domain.BaseDO;
+import com.sbx.core.mybatis.base.dataobject.BaseDO;
 
 /**
  * <p>IBaseService class:</p>

@@ -1,0 +1,7 @@
+rocketmq:
+  producer:
+    groupName: ${spring.application.name}
+    maxMessageSize: 4096
+    sendMsgTimeOut: 3000
+    retryTimesWhenSendFailed: 2
+    isOnOff: on

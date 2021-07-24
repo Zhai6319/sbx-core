@@ -84,6 +84,15 @@ public enum EResultCode implements IResultCode {
      */
     PARAM_VALID_ERROR(400, "参数校验失败：%s"),
 
+    /**
+     * 消息异常
+     */
+    MESSAGE_ERROR(800,"message error：%s"),
+
+    SYSTEM_BUSY(105, "系统繁忙"),
+
+    IP_BAN(501, "访问过于频繁"),
+
 
     ;
 

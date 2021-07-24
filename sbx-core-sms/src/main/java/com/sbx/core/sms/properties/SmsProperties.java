@@ -19,6 +19,6 @@ public class SmsProperties {
 
     private String signName;
 
-    private Map<String,String> templateCode = new HashMap<>();
+    private Map<String,SmsModel> key = new HashMap<>();
 
 }

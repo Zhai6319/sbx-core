@@ -1,7 +1,6 @@
 package com.sbx.core.mybatis.autoconfigure;
 
 import com.baomidou.mybatisplus.annotation.DbType;
-import com.baomidou.mybatisplus.autoconfigure.ConfigurationCustomizer;
 import com.baomidou.mybatisplus.extension.plugins.MybatisPlusInterceptor;
 import com.baomidou.mybatisplus.extension.plugins.inner.PaginationInnerInterceptor;
 import com.sbx.core.launch.factory.YamlPropertySourceFactory;
@@ -21,7 +20,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
  */
 @EnableTransactionManagement
 @Configuration
-@MapperScan(CommonConstant.PARENT_PACKAGE+".**.mapper.**")
+@MapperScan(CommonConstant.PARENT_PACKAGE+".**.mapper")
 @PropertySource(value = "classpath:sbx-mybatis.yaml", factory = YamlPropertySourceFactory.class)
 public class MybatisPlusAutoConfigure {
 
@@ -33,11 +32,6 @@ public class MybatisPlusAutoConfigure {
         MybatisPlusInterceptor interceptor = new MybatisPlusInterceptor();
         interceptor.addInnerInterceptor(new PaginationInnerInterceptor(DbType.MYSQL));
         return interceptor;
-    }
-
-    @Bean
-    public ConfigurationCustomizer configurationCustomizer() {
-        return configuration -> configuration.setUseDeprecatedExecutor(false);
     }
 
 

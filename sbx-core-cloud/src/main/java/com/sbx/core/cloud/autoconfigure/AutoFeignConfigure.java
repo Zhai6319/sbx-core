@@ -1,10 +1,11 @@
 package com.sbx.core.cloud.autoconfigure;
 
+
+import com.sbx.core.cloud.feign.FeignRequestHeaderInterceptor;
 import feign.RequestInterceptor;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import com.sbx.core.cloud.feign.FeignRequestHeaderInterceptor;
 
 /**
  * <p>AutoFeignConfigure class:</p>

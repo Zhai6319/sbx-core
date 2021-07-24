@@ -18,6 +18,7 @@ spring:
       pool-prepared-statements: true
       validation-query-timeout: 2000
       stat-view-servlet:
+        url-pattern: /druid/*
         login-username: admin
         login-password: 12345611
         enabled: true
