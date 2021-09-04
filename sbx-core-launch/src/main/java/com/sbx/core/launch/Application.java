@@ -61,7 +61,12 @@ public class Application {
         props.setProperty("spring.cloud.nacos.config.file-extension","yml");
         props.setProperty("spring.cloud.nacos.discovery.register-enable","true");
         props.setProperty("spring.cloud.nacos.discovery.enable","true");
-        props.setProperty("spring.cloud.nacos.config.shared-dataids", "sbx.yml,sbx-"+profile+".yml,"+appName+"-secrecy.yml");
+        props.setProperty("spring.cloud.nacos.config.shared-configs[0].data-id", "sbx.yaml");
+        props.setProperty("spring.cloud.nacos.config.shared-configs[1].data-id", appName + ".yaml");
+        props.setProperty("spring.cloud.nacos.config.shared-configs[2].data-id", appName + "-secrecy.yaml");
+        props.setProperty("spring.cloud.nacos.config.shared-configs[3].data-id", "sbx-" + profile + ".yaml");
+
+
         // 加载自定义组件
         List<LauncherService> launcherList = new ArrayList<>();
         ServiceLoader.load(LauncherService.class).forEach(launcherList::add);

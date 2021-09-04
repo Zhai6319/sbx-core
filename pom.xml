@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.sbx</groupId>
+    <artifactId>sbx-core</artifactId>
+    <packaging>pom</packaging>
+    <version>1.0.0-SNAPSHOT</version>
+    <description>傻笨象核心组件</description>
+
+    <modules>
+        <module>sbx-core-auto</module>
+        <module>sbx-core-bom</module>
+        <module>sbx-core-cloud</module>
+        <module>sbx-core-db</module>
+        <module>sbx-core-dubbo</module>
+        <module>sbx-core-launch</module>
+        <module>sbx-core-log</module>
+        <module>sbx-core-map</module>
+        <module>sbx-core-model</module>
+        <module>sbx-core-mq</module>
+        <module>sbx-core-mybatis</module>
+        <module>sbx-core-oss</module>
+        <module>sbx-core-parent</module>
+        <module>sbx-core-pay</module>
+        <module>sbx-core-redis</module>
+        <module>sbx-core-sms</module>
+        <module>sbx-core-test</module>
+        <module>sbx-core-tool</module>
+        <module>sbx-core-web</module>
+        <module>sbx-core-wx</module>
+        <module>sbx-core-xxl-job</module>
+    </modules>
+
+
+
+</project>

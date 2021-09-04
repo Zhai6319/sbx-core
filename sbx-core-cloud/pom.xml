@@ -14,7 +14,7 @@
     <artifactId>sbx-core-cloud</artifactId>
 
     <properties>
-        <alibaba.nacos.version>2.0.2</alibaba.nacos.version>
+        <alibaba.nacos.version>2.0.3</alibaba.nacos.version>
     </properties>
 
     <dependencies>
@@ -42,12 +42,7 @@
         <dependency>
             <groupId>com.alibaba.cloud</groupId>
             <artifactId>spring-cloud-starter-alibaba-nacos-config</artifactId>
-            <exclusions>
-                <exclusion>
-                    <groupId>com.alibaba.nacos</groupId>
-                    <artifactId>nacos-client</artifactId>
-                </exclusion>
-            </exclusions>
+
         </dependency>
         <dependency>
             <groupId>com.alibaba.cloud</groupId>
