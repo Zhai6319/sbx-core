@@ -16,5 +16,7 @@ public @interface Log {
 
     String value() default "";
 
+    int logType() default 0;
+
 
 }

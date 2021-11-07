@@ -16,8 +16,4 @@ import org.springframework.context.annotation.PropertySource;
 @Configuration
 @PropertySource(value = "classpath:sbx-dubbo.yaml",factory = YamlPropertySourceFactory.class)
 public class AutoDubboConfigure {
-
-
-
-
 }

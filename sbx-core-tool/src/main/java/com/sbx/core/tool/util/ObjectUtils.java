@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.TypeReference;
 import com.sbx.core.model.base.result.PageResult;
 import com.sbx.core.model.exception.CustomException;
+import com.sbx.core.model.params.Query;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeanUtils;
@@ -14,6 +15,7 @@ import java.lang.reflect.Field;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 import java.util.*;
+import java.util.function.Function;
 
 
 /**
@@ -347,6 +349,32 @@ public class ObjectUtils {
         }
 
         return defType;
+    }
+
+
+    public static  <P extends Query,R> List<R> mergePaging(P param, Function<P,PageResult<R>> function) {
+        List<R> allList = new ArrayList<>();
+        long size = 200L;
+        long current = 1L;
+        param.setSize(size);
+        boolean flag = true;
+        do {
+            param.setCurrent(current);
+            PageResult<R> pageResult = function.apply(param);
+            // 为空不需要更新，跳出循环;不为空则更新
+            if (org.apache.commons.collections4.CollectionUtils.isEmpty(pageResult.getRecords())) {
+                flag = false;
+            } else {
+                allList.addAll(pageResult.getRecords());
+                // 查询数量不等于分页数量即为最后一页，跳出循环
+                if (size != pageResult.getRecords().size()) {
+                    flag = false;
+                }
+            }
+            current++;
+            // 循环次数大于50退出循环，实际总数最多10W左右
+        } while (flag && current < 50);
+        return allList;
     }
 
 }
