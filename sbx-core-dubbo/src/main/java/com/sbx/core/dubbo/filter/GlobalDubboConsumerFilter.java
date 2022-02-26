@@ -16,12 +16,9 @@ import org.slf4j.MDC;
  * @Description: 在dubbo调用中传递traceId
  * @date 2020/7/6 16:38
  */
-public class GlobalDubboConsumerFilter extends ListenableFilter {
-    private final static Logger logger = LoggerFactory.getLogger(GlobalDubboConsumerFilter.class);
+public class GlobalDubboConsumerFilter implements Filter, Filter.Listener {
 
-    public GlobalDubboConsumerFilter() {
-        super.listener = new ExceptionCatchListener();
-    }
+    private final static Logger logger = LoggerFactory.getLogger(GlobalDubboConsumerFilter.class);
 
     @Override
     public Result invoke(Invoker<?> invoker, Invocation invocation) throws RpcException {
@@ -29,26 +26,25 @@ public class GlobalDubboConsumerFilter extends ListenableFilter {
         return invoker.invoke(invocation);
     }
 
-    static class ExceptionCatchListener implements Listener {
-        @Override
-        public void onResponse(Result appResponse, Invoker<?> invoker, Invocation invocation) {
-            if (appResponse.hasException()) {
-                MDC.put(AppContext.MDC_TRACE_ID_NAME, invocation.getAttachment(AppContext.TRACE_ID_NAME));
-                MDC.put(AppContext.MDC_SPAN_ID_NAME, invocation.getAttachment(AppContext.SPAN_ID_NAME));
-                Throwable t = appResponse.getException();
-
-                appResponse.setValue(Response.fail(100, t.getMessage()));
-                appResponse.setException(null);
-
-                LogUtils.logGlobalException(t, logger);
-            }
-        }
-        @Override
-        public void onError(Throwable t, Invoker<?> invoker, Invocation invocation) {
+    @Override
+    public void onResponse(Result appResponse, Invoker<?> invoker, Invocation invocation) {
+        if (appResponse.hasException()) {
             MDC.put(AppContext.MDC_TRACE_ID_NAME, invocation.getAttachment(AppContext.TRACE_ID_NAME));
             MDC.put(AppContext.MDC_SPAN_ID_NAME, invocation.getAttachment(AppContext.SPAN_ID_NAME));
+            Throwable t = appResponse.getException();
+
+            appResponse.setValue(Response.fail(100, t.getMessage()));
+            appResponse.setException(null);
+
             LogUtils.logGlobalException(t, logger);
         }
+    }
+
+    @Override
+    public void onError(Throwable t, Invoker<?> invoker, Invocation invocation) {
+        MDC.put(AppContext.MDC_TRACE_ID_NAME, invocation.getAttachment(AppContext.TRACE_ID_NAME));
+        MDC.put(AppContext.MDC_SPAN_ID_NAME, invocation.getAttachment(AppContext.SPAN_ID_NAME));
+        LogUtils.logGlobalException(t, logger);
     }
 
 
