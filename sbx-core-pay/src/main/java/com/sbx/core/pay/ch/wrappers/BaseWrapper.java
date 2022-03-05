@@ -17,13 +17,13 @@ import java.util.Map;
  */
 public class BaseWrapper {
 
-    public static <T extends BasePayParam> Map<String,String> buildParams(T param){
+    public static <T extends BasePayParam> Map<String,Object> buildParams(T param){
         Validator.getInstance()
                 .notBlank(param.getAppId(),"appId")
                 .notBlank(param.getServiceId(),"serviceId")
                 .notBlank(param.getSignType(),"signType")
                 .notBlank(param.getTfTimestamp(),"tfTimestamp");
-        Map<String,String> params = new HashMap<>();
+        Map<String,Object> params = new HashMap<>();
         params.put("appid",param.getAppId());
         params.put("service_id",param.getServiceId());
         params.put("sign_type",param.getSignType());

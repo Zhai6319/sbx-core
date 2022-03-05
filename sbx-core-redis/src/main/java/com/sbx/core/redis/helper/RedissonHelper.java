@@ -3,6 +3,9 @@ package com.sbx.core.redis.helper;
 import org.redisson.api.*;
 import org.redisson.client.codec.IntegerCodec;
 import org.redisson.client.codec.LongCodec;
+import org.redisson.client.codec.StringCodec;
+import org.redisson.codec.JsonJacksonCodec;
+import org.redisson.codec.MapCacheEventCodec;
 
 import javax.annotation.Resource;
 import java.util.*;
@@ -399,7 +402,7 @@ public class RedissonHelper {
      * @return  返回计数结果
      */
     public long hIncr(String namespace, String key, long number) {
-        RMapCache<String, Long> rMapCache = redissonClient.getMapCache(Objects.requireNonNull(namespace), LongCodec.INSTANCE);
+        RMapCache<String, Long> rMapCache = redissonClient.getMapCache(Objects.requireNonNull(namespace), StringCodec.INSTANCE);
         rMapCache.putIfAbsent(key,0L);
         return rMapCache.addAndGet(key,number);
     }
@@ -411,7 +414,7 @@ public class RedissonHelper {
      * @return          返回计数器值
      */
     public long hGetIncr(String namespace, String key) {
-        RMapCache<String, Long> rMapCache = redissonClient.getMapCache(Objects.requireNonNull(namespace),IntegerCodec.INSTANCE);
+        RMapCache<String, Long> rMapCache = redissonClient.getMapCache(Objects.requireNonNull(namespace),LongCodec.INSTANCE);
         return rMapCache.get(key);
     }
 
@@ -421,7 +424,7 @@ public class RedissonHelper {
      * @return  返回结果
      */
     public Map<String,Long> hGetIncr(String namespace) {
-        RMapCache<String, Long> rMapCache = redissonClient.getMapCache(Objects.requireNonNull(namespace),IntegerCodec.INSTANCE);
+        RMapCache<String, Long> rMapCache = redissonClient.getMapCache(Objects.requireNonNull(namespace), StringCodec.INSTANCE);
         return rMapCache.readAllMap();
     }
 

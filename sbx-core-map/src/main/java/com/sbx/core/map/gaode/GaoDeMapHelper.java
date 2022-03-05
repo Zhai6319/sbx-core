@@ -1,12 +1,12 @@
 package com.sbx.core.map.gaode;
 
+import cn.hutool.http.HttpUtil;
 import com.alibaba.fastjson.JSONObject;
 import com.sbx.core.map.autoconfigure.MapProperties;
 import com.sbx.core.map.gaode.constant.GaoDeConstant;
 import com.sbx.core.map.gaode.enums.DistanceTypeEnum;
 import com.sbx.core.model.exception.CustomException;
 import com.sbx.core.tool.util.StringUtil;
-import com.sbx.core.tool.util.http.OKHttpUtil;
 import com.sbx.core.map.gaode.result.*;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
@@ -40,7 +40,7 @@ public class GaoDeMapHelper {
      * @param destination   目的经纬度
      */
     public DistanceResult distance(String origins, String destination, DistanceTypeEnum distanceType){
-        Map<String,String> params = new HashMap<>(4);
+        Map<String,Object> params = new HashMap<>(4);
         params.put("key",mapProperties.getGaoDe().getKey());
         params.put("origins",origins);
         params.put("destination",destination);
@@ -48,7 +48,7 @@ public class GaoDeMapHelper {
         params.put("output","json");
         params.put("nosteps","1");
         try {
-            String resultStr = OKHttpUtil.doGet(GaoDeConstant.DISTANCE,new HashMap<>(1),params);
+            String resultStr = HttpUtil.get(GaoDeConstant.DISTANCE,params);
             log.info("调用高德api计算距离响应：{}",resultStr);
             DistanceBaseResult result = JSONObject.parseObject(resultStr,DistanceBaseResult.class);
             if (Objects.equals(result.getStatus(),SUCCESS_CODE)) {
@@ -69,7 +69,7 @@ public class GaoDeMapHelper {
      * @return  规划路线详情
      */
     public DrivingRoutePlanningResult routePlanning(String origins, String destination, String strategy, String waypoints){
-        Map<String,String> params = new HashMap<>(4);
+        Map<String,Object> params = new HashMap<>(4);
         params.put("key",mapProperties.getGaoDe().getKey());
 //        params.put("key","034f90809fe890afd3707efc3a60e31c");
         params.put("origin",origins);
@@ -79,7 +79,7 @@ public class GaoDeMapHelper {
             params.put("waypoints",waypoints);
         }
         try {
-            String resultStr = OKHttpUtil.doGet(GaoDeConstant.DRIVING_ROUTE_PLANNING_URL,new HashMap<>(1),params);
+            String resultStr = HttpUtil.get(GaoDeConstant.DRIVING_ROUTE_PLANNING_URL,params);
             DrivingRoutePlanningResult result = JSONObject.parseObject(resultStr, DrivingRoutePlanningResult.class);
             if (Objects.equals(result.getStatus(),SUCCESS_CODE)) {
                 return result;
@@ -124,14 +124,14 @@ public class GaoDeMapHelper {
      * @return  当前位置
      */
     public ReGeoCodeResult regeo(String location){
-        Map<String,String> params = new HashMap<>(4);
+        Map<String,Object> params = new HashMap<>(4);
         params.put("key",mapProperties.getGaoDe().getKey());
 //        params.put("key","034f90809fe890afd3707efc3a60e31c");
         params.put("location",location);
         params.put("extensions","base");
         params.put("batch", "false");
         try {
-            String resultStr = OKHttpUtil.doGet(GaoDeConstant.REGEO,new HashMap<>(1),params);
+            String resultStr = HttpUtil.get(GaoDeConstant.REGEO,params);
             ReGeoCodeBase result = JSONObject.parseObject(resultStr, ReGeoCodeBase.class);
             if (Objects.equals(result.getStatus(),SUCCESS_CODE)) {
                 return result.getRegeocode();

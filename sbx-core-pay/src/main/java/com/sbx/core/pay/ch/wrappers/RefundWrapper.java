@@ -16,14 +16,14 @@ import java.util.Objects;
  */
 public class RefundWrapper {
 
-    public static Map<String,String> buildParams(RefundParam param){
+    public static Map<String,Object> buildParams(RefundParam param){
         Validator.getInstance()
                 .notBlank(param.getTfTimestamp(),"tfTimestamp")
                 .notBlank(param.getRefundBusinessNumber(),"refundBusinessNumber")
                 .notBlank(param.getBackUrl(),"backUrl")
                 .notBlank(param.getClientIp(),"clientIp")
                 .notBlank(param.getBusinessNumber(),"businessNumber");
-        Map<String,String> params = BaseWrapper.buildParams(param);
+        Map<String,Object> params = BaseWrapper.buildParams(param);
         if (Objects.nonNull(param.getRefundAmount())) {
             params.put("refundamount",param.getRefundAmount().toString());
         }

@@ -2,6 +2,7 @@ package com.sbx.core.mybatis;
 
 import com.baomidou.mybatisplus.core.injector.AbstractMethod;
 import com.baomidou.mybatisplus.core.injector.DefaultSqlInjector;
+import com.baomidou.mybatisplus.core.metadata.TableInfo;
 
 import java.util.List;
 
@@ -13,15 +14,16 @@ import java.util.List;
  * @date 2020/3/21
  */
 public class SbxLogicSqlInjector extends DefaultSqlInjector {
+
+
     /**
      * 如果只需增加方法，保留MP自带方法
      * 可以super.getMethodList() 再add
      * @return
      */
     @Override
-    public List<AbstractMethod> getMethodList(Class<?> mapperClass) {
-        List<AbstractMethod> methodList = super.getMethodList(mapperClass);
-        return methodList;
+    public List<AbstractMethod> getMethodList(Class<?> mapperClass, TableInfo tableInfo) {
+        return super.getMethodList(mapperClass,tableInfo);
     }
 
 

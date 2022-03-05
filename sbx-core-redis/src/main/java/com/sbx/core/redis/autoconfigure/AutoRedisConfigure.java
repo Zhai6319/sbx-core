@@ -52,13 +52,6 @@ public class AutoRedisConfigure {
     }
 
     @Bean
-    @ConditionalOnMissingBean(StringRedisTemplate.class)
-    public StringRedisTemplate stringRedisTemplate(RedisConnectionFactory redisConnectionFactory) {
-        StringRedisTemplate template = new StringRedisTemplate();
-        template.setConnectionFactory(redisConnectionFactory);
-        return template;
-    }
-    @Bean
     @ConditionalOnMissingBean(name = "redisHelper")
     public RedisHelper redisHelper(){
         return new RedisHelper();
