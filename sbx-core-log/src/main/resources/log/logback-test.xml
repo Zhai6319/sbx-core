@@ -66,6 +66,41 @@
     </appender>
 
     <!-- 生成日志文件 -->
+    <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>logs/${APP_NAME}.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!-- 日志文件输出的文件名 -->
+            <FileNamePattern>logs/${APP_NAME}-%d{yyyy-MM-dd}.log</FileNamePattern>
+            <MaxHistory>1</MaxHistory>
+        </rollingPolicy>
+        <encoder class="net.logstash.logback.encoder.LoggingEventCompositeJsonEncoder">
+            <providers>
+                <pattern>
+                    <pattern>
+                        {
+                        "@timestamp":"%d{yyyy-MM-dd HH:mm:ss.SSS}",
+                        "APP_NAME":"${APP_NAME}",
+                        "traceId":"%mdc{traceId}",
+                        "spanId":"%mdc{spanId}",
+                        "source_host":"${HOST_NAME}",
+                        "method":"%method",
+                        "level":"%level",
+                        "line_number":"%line",
+                        "thread_name":"%thread",
+                        "class":"%logger{39}",
+                        "message":"%m%n${LOG_EXCEPTION_CONVERSION_WORD:-%wEx}",
+                        "@class":"%mdc{class}",
+                        "@method":"%mdc{method}",
+                        "@line_number":"%mdc{line}",
+                        "@file":"%mdc{file}"
+                        }
+                    </pattern>
+                </pattern>
+            </providers>
+        </encoder>
+    </appender>
+
+    <!-- 生成日志文件 -->
     <appender name="ERROR" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
             <!-- 日志文件输出的文件名 -->

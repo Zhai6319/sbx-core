@@ -54,15 +54,47 @@
                 </pattern>
             </providers>
         </encoder>
-<!--        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">-->
-<!--            <pattern>%n%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] [%X{traceId}] [%logger{50}] %n%-5level: %msg%n</pattern>-->
-<!--        </encoder>-->
         <!-- 打印日志级别 -->
         <filter class="ch.qos.logback.classic.filter.LevelFilter">
             <level>INFO</level>
             <onMatch>ACCEPT</onMatch>
             <onMismatch>DENY</onMismatch>
         </filter>
+    </appender>
+
+    <!-- 生成日志文件 -->
+    <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>logs/${APP_NAME}.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!-- 日志文件输出的文件名 -->
+            <FileNamePattern>logs/${APP_NAME}-%d{yyyy-MM-dd}.log</FileNamePattern>
+            <MaxHistory>1</MaxHistory>
+        </rollingPolicy>
+        <encoder class="net.logstash.logback.encoder.LoggingEventCompositeJsonEncoder">
+            <providers>
+                <pattern>
+                    <pattern>
+                        {
+                        "@timestamp":"%d{yyyy-MM-dd HH:mm:ss.SSS}",
+                        "level":"%level",
+                        "APP_NAME":"${APP_NAME}",
+                        "traceId":"%mdc{traceId}",
+                        "message":"%m%n${LOG_EXCEPTION_CONVERSION_WORD:-%wEx}",
+                        "spanId":"%mdc{spanId}",
+                        "source_host":"${HOST_NAME}",
+                        "method":"%method",
+                        "line_number":"%line",
+                        "thread_name":"%thread",
+                        "class":"%logger{39}",
+                        "@class":"%mdc{class}",
+                        "@method":"%mdc{method}",
+                        "@line_number":"%mdc{line}",
+                        "@file":"%mdc{file}"
+                        }
+                    </pattern>
+                </pattern>
+            </providers>
+        </encoder>
     </appender>
 
     <!-- 生成日志文件 -->
@@ -97,9 +129,6 @@
                 </pattern>
             </providers>
         </encoder>
-        <!--<encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
-            <pattern>%n%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] [%X{traceId}] [%logger{50}] %n%-5level: %msg%n</pattern>
-        </encoder>-->
         <!-- 打印日志级别 -->
         <filter class="ch.qos.logback.classic.filter.LevelFilter">
             <level>ERROR</level>
@@ -190,6 +219,7 @@
         <appender-ref ref="STDOUT"/>
         <appender-ref ref="${INFO_APPENDER}"/>
         <appender-ref ref="${ERROR_APPENDER}"/>
+        <appender-ref ref="FILE"/>
     </root>
 
     <logger name="net.sf.ehcache" level="INFO"/>
