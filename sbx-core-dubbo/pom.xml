@@ -13,6 +13,10 @@
     <artifactId>sbx-core-dubbo</artifactId>
     <version>1.0.0-SNAPSHOT</version>
 
+    <properties>
+        <dubbo-spring-boot.version>3.0.6</dubbo-spring-boot.version>
+    </properties>
+
     <dependencies>
         <dependency>
             <groupId>com.sbx</groupId>
@@ -25,7 +29,12 @@
         <dependency>
             <groupId>org.apache.dubbo</groupId>
             <artifactId>dubbo-spring-boot-starter</artifactId>
-            <version>3.0.6</version>
+            <version>${dubbo-spring-boot.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.dubbo</groupId>
+            <artifactId>dubbo-spring-boot-actuator</artifactId>
+            <version>${dubbo-spring-boot.version}</version>
         </dependency>
         <dependency>
             <groupId>com.sbx</groupId>
