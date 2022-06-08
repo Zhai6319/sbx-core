@@ -35,7 +35,7 @@ public class SignAspect {
     }
 
 
-    @Before("serviceStatistics(sign)")
+    @Before(value = "serviceStatistics(sign)", argNames = "joinPoint,sign")
     public void doBefore(JoinPoint joinPoint, Sign sign) {
         //获取RequestAttributes
         RequestAttributes requestAttributes = RequestContextHolder.getRequestAttributes();
