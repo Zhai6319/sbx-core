@@ -18,7 +18,7 @@ import java.util.Objects;
  */
 public class MultiPayWrapper {
 
-    public static Map<String,String> buildParams(MultiPay multiPay){
+    public static Map<String,Object> buildParams(MultiPay multiPay){
         Validator.getInstance()
                 .notBlank(multiPay.getSubject(),"subject")
                 .notBlank(multiPay.getBankCode(),"bankCode")
@@ -27,7 +27,7 @@ public class MultiPayWrapper {
                 .notBlank(multiPay.getBusinessNumber(),"businessNumber")
                 .notNull(multiPay.getTransactionAmount(),"transactionAmount");
 
-        Map<String,String> params = BaseWrapper.buildParams(multiPay);
+        Map<String,Object> params = BaseWrapper.buildParams(multiPay);
         params.put("backurl",multiPay.getBackUrl());
         params.put("fronturl",multiPay.getFrontUrl());
         params.put("businesstype",multiPay.getBusinessType());

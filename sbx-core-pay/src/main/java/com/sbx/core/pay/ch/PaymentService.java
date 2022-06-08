@@ -1,5 +1,6 @@
 package com.sbx.core.pay.ch;
 
+import cn.hutool.http.HttpUtil;
 import com.alibaba.fastjson.JSONObject;
 import com.sbx.core.model.base.enums.BankTypeEnum;
 import com.sbx.core.model.exception.CustomException;
@@ -8,7 +9,6 @@ import com.sbx.core.pay.ch.model.*;
 import com.sbx.core.pay.ch.wrappers.*;
 import com.sbx.core.tool.util.Base64Util;
 import com.sbx.core.tool.util.DigestUtil;
-import com.sbx.core.tool.util.http.OKHttpUtil;
 import com.sbx.core.pay.ch.enums.BillSubTypeEnum;
 import com.sbx.core.pay.ch.enums.BusinessTypeEnum;
 import com.sbx.core.pay.ch.enums.ServiceIdEnum;
@@ -53,12 +53,12 @@ public class PaymentService {
         multiPay.setTerminal(terminalType.name());
         multiPay.setBusinessType(businessType.getType());
         multiPay.setKind(businessType.getKind());
-        Map<String,String> params = MultiPayWrapper.buildParams(multiPay);
+        Map<String,Object> params = MultiPayWrapper.buildParams(multiPay);
         String sign = this.signForMD5(params);
         params.put("tf_sign",sign);
         try {
             log.info("交易请求参数:{}",JSONObject.toJSONString(params));
-            String result = OKHttpUtil.doPost(chPayProperties.getUrl(),new HashMap<>(),params);
+            String result = HttpUtil.post(chPayProperties.getUrl(),params);
             System.out.println(result);
             BaseResult baseResult = JSONObject.parseObject(result, BaseResult.class);
             if (Objects.equals(baseResult.getCode(),"GP_00")
@@ -96,11 +96,11 @@ public class PaymentService {
         queryPayOrder.setServiceId(ServiceIdEnum.QUERY_PAY_ORDER.serviceId);
         queryPayOrder.setSignType(chPayProperties.getSignType());
         queryPayOrder.setTerminal(terminalType.name());
-        Map<String,String> params = QueryPayOrderWrapper.buildParams(queryPayOrder);
+        Map<String,Object> params = QueryPayOrderWrapper.buildParams(queryPayOrder);
         String sign = this.signForMD5(params);
         params.put("tf_sign",sign);
         try {
-            String result = OKHttpUtil.doPost(chPayProperties.getUrl(),new HashMap<>(),params);
+            String result = HttpUtil.post(chPayProperties.getUrl(),params);
             BaseResult baseResult = JSONObject.parseObject(result, BaseResult.class);
             if (Objects.equals(baseResult.getCode(),"GP_00")
                     && Objects.equals(baseResult.getBiz_code(),"GPBIZ_00")) {
@@ -121,10 +121,10 @@ public class PaymentService {
         param.setAppId(chPayProperties.getAppId());
         param.setServiceId(ServiceIdEnum.REFUND.serviceId);
         param.setSignType(chPayProperties.getSignType());
-        Map<String,String> params = RefundWrapper.buildParams(param);
+        Map<String,Object> params = RefundWrapper.buildParams(param);
         params.put("tf_sign",this.signForMD5(params));
         try {
-            String result = OKHttpUtil.doPost(chPayProperties.getUrl(),new HashMap<>(),params);
+            String result = HttpUtil.post(chPayProperties.getUrl(),params);
             log.info("传化退款发起成功："+result);
             BaseResult baseResult = JSONObject.parseObject(result, BaseResult.class);
             if (Objects.equals(baseResult.getCode(),"GP_00")
@@ -146,10 +146,10 @@ public class PaymentService {
         param.setAppId(chPayProperties.getAppId());
         param.setServiceId(ServiceIdEnum.REFUND.serviceId);
         param.setSignType(chPayProperties.getSignType());
-        Map<String,String> params = ClosePayWrapper.buildParams(param);
+        Map<String,Object> params = ClosePayWrapper.buildParams(param);
         params.put("tf_sign",this.signForMD5(params));
         try {
-            String result = OKHttpUtil.doPost(chPayProperties.getUrl(),new HashMap<>(),params);
+            String result = HttpUtil.post(chPayProperties.getUrl(),params);
             log.info("关闭订单成功："+result);
             BaseResult baseResult = JSONObject.parseObject(result, BaseResult.class);
             if (Objects.equals(baseResult.getCode(),"GP_00")
@@ -172,10 +172,10 @@ public class PaymentService {
         param.setServiceId(ServiceIdEnum.PAY_FOR_CUSTOMER.serviceId);
         param.setSignType(chPayProperties.getSignType());
         param.setFromAccountNumber(chPayProperties.getAccountNumber());
-        Map<String, String> params = PayWrapper.buildParams(param);
+        Map<String, Object> params = PayWrapper.buildParams(param);
         params.put("tf_sign",this.signForMD5(params));
         try {
-            String result = OKHttpUtil.doPost(chPayProperties.getUrl(),new HashMap<>(),params);
+            String result = HttpUtil.post(chPayProperties.getUrl(),params);
             log.info("商户代付到银行卡成功："+result);
             BaseResult baseResult = JSONObject.parseObject(result, BaseResult.class);
             if (!Objects.equals(baseResult.getResult(),"success")) {
@@ -194,18 +194,18 @@ public class PaymentService {
      * @param params    签名数据
      * @return  返回签名
      */
-    public String signForMD5(Map<String,String> params){
-        Map<String,String> signMap = new HashMap<>(params);
+    public String signForMD5(Map<String,Object> params){
+        Map<String,Object> signMap = new HashMap<>(params);
         signMap.put("dog_sk",chPayProperties.getDogSk());
 
-        Map<String, String> map = new TreeMap<>();
+        Map<String, Object> map = new TreeMap<>();
         for(String key:signMap.keySet()){
             map.put(key, signMap.get(key));
         }
-        map = ((TreeMap<String,String>) map).descendingMap();
-        Set<Map.Entry<String, String>> set = map.entrySet();
+        map = ((TreeMap<String,Object>) map).descendingMap();
+        Set<Map.Entry<String, Object>> set = map.entrySet();
         StringBuilder sb = new StringBuilder();
-        for (Map.Entry<String, String> me : set) {
+        for (Map.Entry<String, Object> me : set) {
             sb.append(me.getValue());
         }
         String signStr = DigestUtil.md5Hex(sb.toString());

@@ -16,11 +16,11 @@ import java.util.Map;
 public class PayWrapper extends BaseWrapper{
 
 
-    public static Map<String,String> buildParams(PayForCustomerParam param){
+    public static Map<String,Object> buildParams(PayForCustomerParam param){
         Validator.getInstance()
                 .notBlank(param.getTfTimestamp(),"tfTimestamp")
                 .notBlank(param.getBusinessNumber(),"businessNumber");
-        Map<String,String> params = BaseWrapper.buildParams(param);
+        Map<String,Object> params = BaseWrapper.buildParams(param);
         params.put("businessnumber",param.getBusinessNumber());
         params.put("clientip",param.getClientIp());
         params.put("subject",param.getSubject());

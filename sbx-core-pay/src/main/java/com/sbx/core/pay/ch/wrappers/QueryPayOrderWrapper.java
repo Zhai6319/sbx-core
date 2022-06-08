@@ -15,11 +15,11 @@ import java.util.Map;
  */
 public class QueryPayOrderWrapper {
 
-    public static Map<String,String> buildParams(QueryPayOrder queryPayOrder){
+    public static Map<String,Object> buildParams(QueryPayOrder queryPayOrder){
         Validator.getInstance()
                 .notBlank(queryPayOrder.getTfTimestamp(),"tfTimestamp")
                 .notBlank(queryPayOrder.getBusinessNumber(),"businessNumber");
-        Map<String,String> params = BaseWrapper.buildParams(queryPayOrder);
+        Map<String,Object> params = BaseWrapper.buildParams(queryPayOrder);
         params.put("businessnumber",queryPayOrder.getBusinessNumber());
         return params;
     }

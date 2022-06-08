@@ -4,6 +4,7 @@ import com.sbx.core.launch.factory.YamlPropertySourceFactory;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 
+
 /**
  * <p>AutoDbConfigure class:</p>
  *
